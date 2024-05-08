@@ -37,5 +37,5 @@ komponent2 = Komponent("Mutterka", 2, 50, 1)
 
 produkt1 = Produkt("Krzesło", 5, 10, [komponent1, komponent2])
 
-zapotrzebowanie = oblicz_zapotrzebowanie([produkt1], 5)
+zapotrzebowanie = oblicz_zapotrzebowanie([produkt1], 2)
 generuj_raport(zapotrzebowanie)
