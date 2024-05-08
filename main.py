@@ -1,33 +1,41 @@
-class Product:
-    def __init__(self, id, name, demand, stock, production_time, sec_lvl_components, sec_lvl_time, sec_lvl_stock, sec_lvl_amounts):
-        self.id = id
-        self.name = name
-        self.demand = demand
-        self.stock = stock
-        self.demand_netto = self.stock - self.demand
-        self.production_time = production_time
-        self.sec_lvl_components = sec_lvl_components
-        self.sec_lvl_time = sec_lvl_time
-        self.sec_lvl_stock = sec_lvl_stock
-        self.sec_lvl_amounts = sec_lvl_amounts
+class Komponent:
+    def __init__(self, nazwa, czas_produkcji, ilosc_poczatkowa, ilosc_na_produkt):
+        self.nazwa = nazwa
+        self.czas_produkcji = czas_produkcji
+        self.ilosc_poczatkowa = ilosc_poczatkowa
+        self.ilosc_na_produkt = ilosc_na_produkt
 
+class Produkt:
+    def __init__(self, nazwa, czas_produkcji, ilosc_na_dzien, komponenty):
+        self.nazwa = nazwa
+        self.czas_produkcji = czas_produkcji
+        self.ilosc_na_dzien = ilosc_na_dzien
+        self.komponenty = komponenty
 
-    #def __str__(self):
-        #return f"Product id: {self.id} \nProduct name: {self.name} \nDemand: {self.demand} \nStock: {self.stock} \nProduction time: {self.production_time} \nNetto demand: {self.demand_netto} \nComponents: {self.sec_lvl_components}"
-        
-    def calculations(self):
-        if self.demand_netto >= 0:
-            return "We have the right amount of product in stock!"
-        else:
-            sec_lvl_netto = []
-            for x in range(len(self.sec_lvl_stock)):
-                res = self.sec_lvl_stock[x] - self.sec_lvl_amounts[x]*abs(self.demand_netto)
-                sec_lvl_netto.append(res)
-                for y in sec_lvl_netto:
-                    if y >=0:
-                        
+def oblicz_zapotrzebowanie(produkty, dzien):
+    zapotrzebowanie = {}
+    for produkt in produkty:
+        zapotrzebowanie[produkt.nazwa] = produkt.ilosc_na_dzien * dzien
 
+        for komponent in produkt.komponenty:
+            if komponent.nazwa not in zapotrzebowanie:
+                zapotrzebowanie[komponent.nazwa] = 0
 
-product = Product(1, "tort", 1, 0, 2, ["polewa", "ciasto", "wisienka"], [1, 2, 1], [5, 10, 2], [2, 1, 1])
-#print(product)
-print(product.calculations())
+            zapotrzebowanie[komponent.nazwa] += produkt.ilosc_na_dzien * komponent.ilosc_na_produkt
+
+    return zapotrzebowanie
+
+def generuj_raport(zapotrzebowanie):
+    print("Raport zapotrzebowania:")
+    for nazwa, ilosc in zapotrzebowanie.items():
+        print(f"{nazwa}: {ilosc}")
+
+# Przykład użycia
+
+komponent1 = Komponent("Śrubka", 1, 100, 2)
+komponent2 = Komponent("Mutterka", 2, 50, 1)
+
+produkt1 = Produkt("Krzesło", 5, 10, [komponent1, komponent2])
+
+zapotrzebowanie = oblicz_zapotrzebowanie([produkt1], 5)
+generuj_raport(zapotrzebowanie)
