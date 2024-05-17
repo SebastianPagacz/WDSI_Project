@@ -23,7 +23,7 @@ class Product:
                 raport_res +=f"{self.prod_components_amount[x].comp_name} \n"
             return raport_res[0:-1]
         else:
-            raport_res += f"We dont have enough stock. \nStock that we need to complete: {abs(self.prod_stock - self.prod_demand)}. \nComponents: \n"
+            raport_res += f"We dont have enough stock. \nStock that we need to complete the order: {abs(self.prod_stock - self.prod_demand)}. \nComponents: \n"
             for x in range(len(self.prod_components_amount)):
                 raport_res +=f"{self.prod_components_amount[x].comp_name} \n"
             return raport_res[0:-1]
@@ -46,7 +46,10 @@ class Product:
             res_obliczenia += "\nOrder: \n"
             for x in range(len(self.prod_components_amount)):
                 res_obliczenia += f"{self.prod_components_amount[x].comp_name} in: {comp1_order} days\n" 
-            return res_obliczenia
+            if comp1_order < 0:
+                return "We are not able to do the order in time!"
+            else:
+                return res_obliczenia
                 
 ciasto = Component("Ciasto", 30, 3, 2, 1)
 polewa = Component("Polewa", 50, 1, 1, 2)
