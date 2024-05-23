@@ -16,6 +16,7 @@ class Product:
         self.prod_components_amount = prod_components_amount
         self.prod_final_time = prod_final_time
 # raport function returns string containing information about Product and Components it takes to make
+# It is a simple explenation for the user what Components Does product contains, it also provides user with exact numbers of stock and requirement components in order to create a final product
     def raport(self):
         raport_res =  f"Product name: {self.prod_name} \nProduct stock: {self.prod_stock} \nProduct demand: {self.prod_demand} \n"
         if self.prod_stock - self.prod_demand > 0:
