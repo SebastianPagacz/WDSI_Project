@@ -28,7 +28,8 @@ class Product:
             for x in range(len(self.prod_components_amount)):
                 raport_res +=f"{self.prod_components_amount[x].comp_name} \n"
             return raport_res[0:-1]
- #obliczenia function purpsoe is to calculate how many more Products, Components and component parts are required to complete an order        
+#obliczenia function purpsoe is to calculate how many more Products, Components and component parts are required to complete an order
+#It purpose is to automatize process of calculations in ERP system
     def obliczenia(self):
         demand_component = []
         if self.prod_demand > self.prod_stock:
