@@ -1,3 +1,4 @@
+#component decalration
 class Component:
     def __init__(self, comp_name, comp_stock, comp_order_time, comp_time_to_make, comp_to_make):
         self.comp_name = comp_name
@@ -5,7 +6,7 @@ class Component:
         self.comp_order_time = comp_order_time
         self.comp_time_to_make = comp_time_to_make
         self.comp_to_make = comp_to_make
-
+#product declaration
 class Product:
     def __init__(self, prod_name, prod_stock, prod_demand, prod_time_to_make, prod_components_amount, prod_final_time):
         self.prod_name = prod_name
@@ -14,7 +15,7 @@ class Product:
         self.prod_time_to_make = prod_time_to_make
         self.prod_components_amount = prod_components_amount
         self.prod_final_time = prod_final_time
-
+# raport function returns string containing information about Product and Components it takes to make
     def raport(self):
         raport_res =  f"Product name: {self.prod_name} \nProduct stock: {self.prod_stock} \nProduct demand: {self.prod_demand} \n"
         if self.prod_stock - self.prod_demand > 0:
@@ -27,7 +28,7 @@ class Product:
             for x in range(len(self.prod_components_amount)):
                 raport_res +=f"{self.prod_components_amount[x].comp_name} \n"
             return raport_res[0:-1]
-        
+ #obliczenia function purpsoe is to calculate how many more Products, Components and component parts are required to complete an order        
     def obliczenia(self):
         demand_component = []
         if self.prod_demand > self.prod_stock:
@@ -51,12 +52,3 @@ class Product:
             else:
                 return res_obliczenia
                 
-ciasto = Component("Ciasto", 30, 3, 2, 1)
-polewa = Component("Polewa", 50, 1, 1, 2)
-wisienka = Component("Wisienka", 25, 2, 0, 1)
-
-
-tort = Product("Tort", 1, 5, 1, [ciasto, wisienka, polewa], 10)
-
-print(tort.raport())
-#print(tort.obliczenia())
