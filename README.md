@@ -1,4 +1,8 @@
 # Table of contents
+* [What is Simple ERP?](##What-is-simple-ERP?)
+* [Technologies](#Technologies)
+* [Architecure Overview](#Architecure-Overview)
+* [Development Environment Setup](#Development-Environment-Setup)
 
 ## What is simple ERP?
 Simple ERP is not complicated, basic and easy to use tool created to manage recourses of a company in a simple and user firendly manner.
