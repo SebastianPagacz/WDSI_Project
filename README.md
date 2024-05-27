@@ -4,8 +4,8 @@
 * [Development Environment Setup](#Development-Environment-Setup)
 * [Product class](#Product-class)
 * [Component-class](#Component-class)
-* [Raport function](#raport()-function)
-* [Obliczenia function](#obliczenia()-function)
+* [Raport function](#raport-function)
+* [Obliczenia function](#obliczenia-function)
   
 # What is simple ERP?
 Simple ERP is not complicated, basic and easy to use tool created to manage recourses of a company in a simple and user firendly manner.
@@ -39,8 +39,8 @@ Component(name, stock, order_time, time_to_make, amount_needed_in_product)
 * Fourth is `time_to_make`, also a positive inteeger, tells us how much time it takes us to make component into the final product
 * The last one from Component class is `amount_needed_in_product`, it also should be a positive inteeger number, tells us the amount of components that are required to make a final product
 
-# raport() function
+# raport function
 `raport()` function returns a string containing full informations about our product and deadlines
 
-# obliczenia() function
+# obliczenia function
 `obliczenia()` function calculates and returns a string containing amounts and time within we have to place order in order to complete the order in time
